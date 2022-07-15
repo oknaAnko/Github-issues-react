@@ -1,8 +1,16 @@
-import axios from "axios";
+import axios, { AxiosRequestHeaders } from "axios";
 import { IUsersFromAPI } from "../../helpers/interfaces";
 
 export const FETCH_REPOSITORIES = "FETCH_REPOSITORIES";
 export const FETCH_USERS = "FETCH_USERS";
+
+const token = process.env.REACT_APP_API_TOKEN;
+console.log(token);
+
+const headers: AxiosRequestHeaders = {
+  Accept: "application/vnd.github+json",
+  Authorization: `token${token}`,
+};
 
 export const fetchResults = async () => {
   try {
@@ -10,7 +18,7 @@ export const fetchResults = async () => {
     console.log("repositories", repositories);
     console.log("repositories.data", repositories.data);
 
-    const users = await axios.get("https://api.github.com/users");
+    const users = await axios.get("https://api.github.com/users", { headers });
     console.log("users", users);
     console.log("users.data", users.data);
 
