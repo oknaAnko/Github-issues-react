@@ -1,3 +1,4 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosRequestHeaders } from "axios";
 import { IUsersFromAPI } from "../../helpers/interfaces";
 
@@ -12,11 +13,11 @@ const headers: AxiosRequestHeaders = {
   Authorization: `token${token}`,
 };
 
-export const fetchResults = async () => {
+export const fetchUsers = createAsyncThunk(FETCH_USERS, async (_, { rejectWithValue }) => {
   try {
-    const repositories = await axios.get("https://api.github.com/repositories");
-    console.log("repositories", repositories);
-    console.log("repositories.data", repositories.data);
+    // const repositories = await axios.get("https://api.github.com/repositories");
+    // console.log("repositories", repositories);
+    // console.log("repositories.data", repositories.data);
 
     const users = await axios.get("https://api.github.com/users", { headers });
     console.log("users", users);
@@ -29,7 +30,8 @@ export const fetchResults = async () => {
 
     const usersDetails = Promise.all(userPromiseArray);
     console.log("usersDetails", usersDetails);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
+    return rejectWithValue(err);
   }
-};
+});
