@@ -28,7 +28,7 @@ export const fetchUsers = createAsyncThunk(FETCH_USERS, async (_, { rejectWithVa
 
     const userPromiseArray = usersURLs.map((url: string) => axios.get(url, { headers }));
 
-    const usersDetails = Promise.all(userPromiseArray);
+    const usersDetails = await Promise.all(userPromiseArray);
     console.log("usersDetails", usersDetails);
   } catch (err) {
     console.log(err);
