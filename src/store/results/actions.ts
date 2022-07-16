@@ -10,7 +10,7 @@ console.log(token);
 
 const headers: AxiosRequestHeaders = {
   Accept: "application/vnd.github+json",
-  Authorization: `token${token}`,
+  Authorization: `token ${token}`,
 };
 
 export const fetchUsers = createAsyncThunk(FETCH_USERS, async (_, { rejectWithValue }) => {
