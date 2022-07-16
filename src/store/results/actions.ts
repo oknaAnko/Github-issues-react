@@ -26,7 +26,7 @@ export const fetchUsers = createAsyncThunk(FETCH_USERS, async (_, { rejectWithVa
     const usersURLs = users.data.map((item: IUsersFromAPI) => item.url);
     console.log(usersURLs);
 
-    const userPromiseArray = usersURLs.map((url: string) => axios.get(url));
+    const userPromiseArray = usersURLs.map((url: string) => axios.get(url, { headers }));
 
     const usersDetails = Promise.all(userPromiseArray);
     console.log("usersDetails", usersDetails);
