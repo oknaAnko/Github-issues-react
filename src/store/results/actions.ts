@@ -23,8 +23,9 @@ export const fetchUsers = createAsyncThunk(FETCH_USERS, async (_, { rejectWithVa
 
     const userPromiseArray = usersURLs.map((url: string) => axios.get(url, { headers }));
 
-    const usersDetails = await Promise.all(userPromiseArray);
+    const usersDetails = await (await Promise.all(userPromiseArray)).map((res) => res.data);
     console.log("usersDetails", usersDetails);
+    return usersDetails;
   } catch (err) {
     console.log(err);
     // console.log(err.response.data.message);
@@ -43,8 +44,9 @@ export const fetchRepositories = createAsyncThunk(FETCH_REPOSITORIES, async (_, 
 
     const repositoryPromiseArray = repositoriesURLs.map((url: string) => axios.get(url, { headers }));
 
-    const repositoriesDetails = await Promise.all(repositoryPromiseArray);
+    const repositoriesDetails = await (await Promise.all(repositoryPromiseArray)).map((res) => res.data);
     console.log("repositoriesDetails", repositoriesDetails);
+    return repositoriesDetails;
   } catch (err) {
     console.log(err);
     return rejectWithValue(err);
