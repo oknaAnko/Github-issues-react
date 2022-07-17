@@ -18,3 +18,10 @@ export interface IUsersFromAPI {
   type: string;
   url: string;
 }
+
+export interface IRepositoriesFromAPI {
+  id: number;
+  full_name: string;
+  url: string;
+  description: string;
+}
