@@ -1,21 +1,18 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-import { useAppDispatch } from "../store/hooks";
-import { fetchUsers, fetchRepositories } from "../store/results/actions";
-import { getAllUsers, getAllRepositories } from "../store/results/selectors";
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import ResultsPage from "../pages/ResultsPage";
+import UserPage from "../pages/UserPage";
 
 const Content = () => {
-  const users = useSelector(getAllUsers);
-  const repositories = useSelector(getAllRepositories);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-    dispatch(fetchRepositories());
-  }, []);
-
-  return <div>Content</div>;
+  return (
+    <main>
+      <Routes>
+        <Route path="/" element={<ResultsPage />} />
+        <Route path="/user" element={<UserPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </main>
+  );
 };
 
 export default Content;
