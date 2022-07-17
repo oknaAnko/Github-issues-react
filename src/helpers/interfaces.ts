@@ -19,9 +19,38 @@ export interface IUsersFromAPI {
   url: string;
 }
 
+export interface IUser {
+  id: number;
+  name: string;
+  login: string;
+  bio: string;
+  location: string;
+}
+
 export interface IRepositoriesFromAPI {
   id: number;
   full_name: string;
   url: string;
   description: string;
 }
+
+interface ILicense {
+  key: string;
+  name: string;
+  spdx_id: string;
+  url: string;
+  node_id: string;
+}
+
+export interface IRepo {
+  id: number;
+  full_name: string;
+  description: string;
+  url: string;
+  stargazers_count: number;
+  language: string;
+  licence: ILicense;
+  updated_at: string;
+}
+
+export type UserOrRepo = IUser | IRepo;

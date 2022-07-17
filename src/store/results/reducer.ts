@@ -1,15 +1,15 @@
 import { AnyAction } from "@reduxjs/toolkit";
-import { IUsersFromAPI, IRepositoriesFromAPI } from "../../helpers/interfaces";
+import { IUser, IRepo } from "../../helpers/interfaces";
 import { FETCH_USERS, FETCH_REPOSITORIES } from "./actions";
 
 export interface IUsersState {
-  users: IUsersFromAPI[];
+  users: IUser[];
   isLoading: boolean;
   error: null;
 }
 
 export interface IRepositoriesState {
-  repositories: IRepositoriesFromAPI[];
+  repositories: IRepo[];
   isLoading: boolean;
   error: null;
 }
