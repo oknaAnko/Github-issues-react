@@ -33,8 +33,14 @@ const ResultsPage = () => {
 
   return (
     <>
-      <div>ResultPage</div>
-      {componentsToDisplay}
+      <div className="wrapper-page">
+        <div className="results-container">
+          <header>
+            <h1>results</h1>
+          </header>
+          <section className="results">{componentsToDisplay}</section>
+        </div>
+      </div>
     </>
   );
 };
