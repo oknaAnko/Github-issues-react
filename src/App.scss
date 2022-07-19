@@ -1,18 +1,105 @@
+//#region MENU STYLES
 .menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 17px 63px 17px 20px;
-  gap: 880px;
-
-  position: absolute;
-  width: 1200px;
-  height: 72px;
-  left: 0px;
-  top: 0px;
-
   /* Grayscale/Darkest Gray */
   background: #24292f;
+  height: 72px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 17px 63px 17px 20px;
+    gap: 880px;
+
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+
+    .button-search {
+      width: 242px;
+      height: 37px;
+
+      /* Inside auto layout */
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+
+      /* Grayscale/ Light Gray 3 */
+      border: 1px solid #d0d7de;
+      border-radius: 5px;
+      background-color: transparent;
+
+      &::placeholder {
+        position: absolute;
+        left: 7.02%;
+        right: 72.73%;
+        top: 16.22%;
+        bottom: 18.92%;
+
+        font-family: "Segoe UI";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+
+        display: flex;
+        align-items: center;
+
+        /* Grayscale/ Light Gray 3 */
+        color: #d0d7de;
+      }
+    }
+  }
+}
+
+//#endregion MENU STYLES
+
+//#region RESULTS STYLES
+.wrapper-page {
+  /* Users results desktop */
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+
+  .results-container {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 30px;
+
+    position: absolute;
+    width: 950px;
+    height: 1371px;
+    left: 127px;
+    top: 30px;
+
+    header {
+      width: 950px;
+      height: 26px;
+      /* Inside auto layout */
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+
+    .results {
+      /* Auto layout */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px;
+
+      width: 950px;
+      height: 1183px;
+
+      /* Inside auto layout */
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+    }
+  }
 }
 
 .language-color {
@@ -21,3 +108,5 @@
   height: 12px;
   border-radius: 50%;
 }
+
+//#endregion RESULTS STYLES
