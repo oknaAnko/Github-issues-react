@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IUser } from "../helpers/interfaces";
 
 interface Props {
@@ -6,7 +7,11 @@ interface Props {
 }
 
 const User: React.FC<Props> = ({ user }) => {
-  return <div>{user.name}</div>;
+  return (
+    <>
+      <Link to={`/users/${user.login}`}>{user.name}</Link>
+    </>
+  );
 };
 
 export default User;

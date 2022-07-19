@@ -8,7 +8,7 @@ const Content = () => {
     <main>
       <Routes>
         <Route path="/" element={<ResultsPage />} />
-        <Route path="/user" element={<UserPage />} />
+        <Route path="users/:login" element={<UserPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </main>
