@@ -1,0 +1,172 @@
+//#region REPO
+
+.container {
+  @include flex-parent(column, flex-start);
+  @include flex-child();
+  width: 950px;
+  padding: 0px 16px 16px;
+  gap: 20px;
+  align-self: stretch;
+
+  .repo {
+    @include flex-parent(column, flex-start);
+    @include flex-child();
+    width: 918px;
+    padding: 0px;
+    gap: 15px;
+
+    .name-container {
+      @include flex-parent(column, flex-start);
+      @include flex-child();
+      width: 100%;
+      padding: 0px;
+      gap: 5px;
+      order: 0;
+
+      .name {
+        @include flex-parent(row, center);
+        @include flex-child();
+        width: 100%;
+        padding: 0px;
+        gap: 8px;
+        align-self: stretch;
+
+        & span {
+          @include flex-child();
+          width: 20px;
+          height: 20px;
+        }
+
+        & p {
+          @include name-text("Roboto", #166cd7);
+        }
+      }
+
+      .description {
+        @include flex-parent(row, flex-start);
+        @include flex-child();
+        width: 100%;
+        padding: 0px 0px 0px 28px;
+        gap: 10px;
+        align-self: stretch;
+
+        & p {
+          @include name-text("Roboto", #6f7781);
+        }
+      }
+    }
+
+    .details-container {
+      @include flex-parent(row, flex-start);
+      @include flex-child();
+      width: 100%;
+      padding: 0px 0px 0px 28px;
+      gap: 14px;
+      order: 2;
+
+      .stars {
+        @include flex-parent(row, center);
+        @include flex-child();
+        justify-content: center;
+        height: 16px;
+        padding: 0px;
+        gap: 3px;
+        order: 0;
+
+        & span {
+          @include flex-child();
+        }
+
+        & p {
+          @include flex-child();
+
+          font-family: "Segoe UI";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+          color: #6f7781;
+        }
+      }
+
+      .language {
+        @include flex-parent(row, center);
+        @include flex-child();
+        height: 16px;
+        justify-content: center;
+        padding: 0px;
+        gap: 3px;
+        order: 1;
+
+        .language-color {
+          @include flex-child();
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+        }
+
+        & p {
+          @include flex-child();
+
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+          /* Grayscale/ Dark Gray 1 */
+          color: #6f7781;
+        }
+      }
+
+      .license {
+        @include flex-parent(row, center);
+        @include flex-child();
+        height: 16px;
+        justify-content: center;
+        padding: 0px;
+        gap: 3px;
+        order: 2;
+
+        & p {
+          @include flex-child();
+
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+          /* Grayscale/ Dark Gray 1 */
+          color: #6f7781;
+        }
+      }
+
+      .date {
+        @include flex-parent(row, center);
+        @include flex-child();
+        height: 16px;
+        justify-content: center;
+        padding: 0px;
+        gap: 3px;
+        order: 3;
+
+        & p {
+          @include flex-child();
+
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+          /* Grayscale/ Dark Gray 1 */
+          color: #6f7781;
+        }
+      }
+    }
+  }
+}
+
+//#endregion REPO

@@ -1,0 +1,33 @@
+@font-face {
+  font-family: SegoeUIBold;
+  src: url("../fonts/SegoeUIBold.ttf");
+}
+
+@mixin name-text($font-family, $font-color) {
+  width: 890px;
+
+  font-family: $font-family, sans-serif;
+  font-style: normal;
+  // font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: $font-color;
+  // /* Grayscale/Dark Gray 2 */
+  // color: #6f7781
+  /* #166CD7 blue*/
+
+  flex: none;
+  flex-grow: 1;
+}
+
+@mixin flex-parent($flex-direction, $align-items) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: $align-items;
+}
+
+@mixin flex-child() {
+  flex: none;
+  flex-grow: 0;
+}

@@ -1,3 +1,7 @@
+@import "./sass/mixins";
+@import "./sass/repo";
+@import "./sass/user";
+
 //#region MENU STYLES
 .menu {
   /* Grayscale/Darkest Gray */
@@ -19,7 +23,6 @@
       width: 242px;
       height: 37px;
 
-      /* Inside auto layout */
       flex: none;
       order: 1;
       flex-grow: 0;
@@ -56,13 +59,11 @@
 
 //#region RESULTS STYLES
 .wrapper-page {
-  /* Users results desktop */
   width: 1200px;
   margin: 0 auto;
   position: relative;
 
   .results-container {
-    /* Auto layout */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -78,14 +79,12 @@
     header {
       width: 950px;
       height: 26px;
-      /* Inside auto layout */
       flex: none;
       order: 0;
       flex-grow: 0;
     }
 
     .results {
-      /* Auto layout */
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -94,7 +93,6 @@
       width: 950px;
       height: 1183px;
 
-      /* Inside auto layout */
       flex: none;
       order: 1;
       flex-grow: 0;
@@ -102,11 +100,31 @@
   }
 }
 
-.language-color {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
 //#endregion RESULTS STYLES
+
+.separation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+
+  width: 918px;
+  height: 1px;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+
+  .separator {
+    width: 918px;
+    height: 1px;
+    background: #c4c4c4;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+}

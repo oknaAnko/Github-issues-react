@@ -1,0 +1,104 @@
+//#region USER
+.container-u {
+  @include flex-parent(column, flex-start);
+  @include flex-child();
+  width: 950px;
+  padding: 0px 16px 16px;
+  gap: 20px;
+  align-self: stretch;
+
+  .user {
+    @include flex-parent(column, flex-start);
+    @include flex-child();
+    width: 918px;
+    padding: 0px;
+    gap: 15px;
+
+    .name-container-u {
+      @include flex-parent(column, flex-start);
+      @include flex-child();
+      width: 100%;
+      padding: 0px;
+      align-self: stretch;
+      order: 1;
+
+      .name-u {
+        @include flex-parent(row, center);
+        @include flex-child();
+        width: 100%;
+        padding: 0px;
+        gap: 8px;
+        align-self: stretch;
+
+        & img {
+          @include flex-child();
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+        }
+
+        & a {
+          @include name-text(SegoeUIBold, #166cd7);
+          text-decoration: none;
+        }
+
+        & div {
+          @include flex-parent(row, flex-start);
+          padding: 0px;
+          gap: 10px;
+          flex: none;
+          order: 1;
+          flex-grow: 1;
+        }
+      }
+
+      .login-u {
+        @include flex-parent(row, flex-start);
+        @include flex-child();
+        padding: 0px 0px 0px 28px;
+        gap: 10px;
+
+        & p {
+          @include name-text("Roboto", #6f7781);
+        }
+      }
+    }
+
+    .details-container-u {
+      @include flex-parent(column, flex-start);
+      @include flex-child();
+      width: 100%;
+      padding: 0px 0px 0px 28px;
+      gap: 8px;
+      align-self: stretch;
+      order: 2;
+
+      .bio {
+        @include flex-child();
+        align-self: stretch;
+
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        color: #24292f;
+      }
+
+      .location {
+        @include flex-child();
+        align-self: stretch;
+
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        /* Grayscale/Dark Gray 2 */
+        color: #6f7781;
+      }
+    }
+  }
+}
+
+//#endregion USER
