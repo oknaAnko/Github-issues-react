@@ -25,6 +25,12 @@ export interface IUser {
   login: string;
   bio: string;
   location: string;
+  avatar_url: string;
+}
+
+export interface IUserDetailed extends IUser {
+  followers: number;
+  following: number;
 }
 
 export interface IRepositoriesFromAPI {
@@ -49,7 +55,7 @@ export interface IRepo {
   url: string;
   stargazers_count: number;
   language: string;
-  licence: ILicense;
+  license: Partial<ILicense>;
   updated_at: string;
 }
 
