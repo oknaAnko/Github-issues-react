@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import { RootState } from "../store";
-import { IUsersState, IRepositoriesState } from "./reducer";
+import { IUsersState, IRepositoriesState, ISearchValueState } from "./reducer";
 
 const usersState = (state: RootState): IUsersState => state.users;
 
@@ -13,3 +13,7 @@ const repositoriesState = (state: RootState): IRepositoriesState => state.reposi
 export const getAllRepositories = createSelector(repositoriesState, (state) => state.repositories);
 export const getRepositoriesError = createSelector(repositoriesState, (state) => state.error);
 export const getRepositoriesLoadingStatus = createSelector(repositoriesState, (state) => state.isLoading);
+
+const searchValueState = (state: RootState): ISearchValueState => state.searchValue;
+
+export const getSearchValue = createSelector(searchValueState, (state) => state.value);

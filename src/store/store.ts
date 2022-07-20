@@ -1,10 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { usersReducer, repositoriesReducer } from "./results/reducer";
+import { usersReducer, repositoriesReducer, searchValueReducer } from "./results/reducer";
 
 export const store = configureStore({
   reducer: {
     users: usersReducer,
     repositories: repositoriesReducer,
+    searchValue: searchValueReducer,
   },
 });
 

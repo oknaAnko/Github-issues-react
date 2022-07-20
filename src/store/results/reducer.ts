@@ -1,6 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { IUser, IRepo } from "../../helpers/interfaces";
-import { FETCH_USERS, FETCH_REPOSITORIES, FETCH_FILTERED_REPOSITORIES } from "./actions";
 
 export interface IUsersState {
   users: IUser[];
@@ -24,6 +23,14 @@ export const initialRepositoriestState: IRepositoriesState = {
   repositories: [],
   isLoading: false,
   error: null,
+};
+
+export interface ISearchValueState {
+  value: string;
+}
+
+export const initialSearchValueState: ISearchValueState = {
+  value: "",
 };
 
 export const usersReducer = (state: IUsersState = initialUserstState, action: AnyAction) => {
@@ -101,6 +108,18 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
         error: action.payload,
       };
 
+    default:
+      return state;
+  }
+};
+
+export const searchValueReducer = (state: ISearchValueState = initialSearchValueState, action: AnyAction) => {
+  switch (action.type) {
+    case "STORE_SEARCH_VALUE":
+      return {
+        ...state,
+        value: action.payload,
+      };
     default:
       return state;
   }

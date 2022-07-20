@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../store/hooks";
-import { fetchFilteredRepositories, fetchFilteredUsers } from "../store/results/actions";
+import { storeSearchValue } from "../store/results/actions";
 import useDebounce from "../helpers/useDebounce";
 import logo from "../images/logo.png";
 
@@ -11,10 +11,7 @@ const Menu = () => {
   const debouncedValue = useDebounce<string>(searchValue, 500);
 
   useEffect(() => {
-    if (searchValue) {
-      dispatch(fetchFilteredRepositories(searchValue));
-      dispatch(fetchFilteredUsers(searchValue));
-    }
+    dispatch(storeSearchValue(searchValue));
   }, [debouncedValue]);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {

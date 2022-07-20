@@ -3,20 +3,22 @@ import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "../store/hooks";
 import { fetchUsers, fetchRepositories } from "../store/results/actions";
-import { getAllUsers, getAllRepositories } from "../store/results/selectors";
+import { getAllUsers, getAllRepositories, getSearchValue } from "../store/results/selectors";
 import { IUser, IRepo, UserOrRepo } from "../helpers/interfaces";
 import User from "../components/User";
 import Repo from "../components/Repo";
 
 const ResultsPage = () => {
-  const users = useSelector(getAllUsers);
-  const repositories = useSelector(getAllRepositories);
   const dispatch = useAppDispatch();
 
+  const users = useSelector(getAllUsers);
+  const repositories = useSelector(getAllRepositories);
+  const searchValue = useSelector(getSearchValue);
+
   useEffect(() => {
-    dispatch(fetchUsers());
-    dispatch(fetchRepositories());
-  }, []);
+    dispatch(fetchUsers(searchValue));
+    dispatch(fetchRepositories(searchValue));
+  }, [searchValue]);
 
   const itemsToDisplay: UserOrRepo[] = [...users, ...repositories].sort((a, b) => a.id - b.id).slice(0, 9);
 
