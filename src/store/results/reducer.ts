@@ -1,6 +1,6 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { IUser, IRepo } from "../../helpers/interfaces";
-import { FETCH_USERS, FETCH_REPOSITORIES } from "./actions";
+import { FETCH_USERS, FETCH_REPOSITORIES, FETCH_FILTERED_REPOSITORIES } from "./actions";
 
 export interface IUsersState {
   users: IUser[];
@@ -45,6 +45,21 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         ...state,
         error: action.payload,
       };
+    case "FETCH_FILTERED_USERS/pending":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "FETCH_FILTERED_USERS/fulfilled":
+      return {
+        ...state,
+        users: action.payload || [],
+      };
+    case "FETCH_FILTERED_USERS/rejected":
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return state;
   }
@@ -69,6 +84,23 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
         ...state,
         error: action.payload,
       };
+
+    case "FETCH_FILTERED_REPOSITORIES/pending":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "FETCH_FILTERED_REPOSITORIES/fulfilled":
+      return {
+        ...state,
+        repositories: action.payload || [],
+      };
+    case "FETCH_FILTERED_REPOSITORIES/rejected":
+      return {
+        ...state,
+        error: action.payload,
+      };
+
     default:
       return state;
   }
