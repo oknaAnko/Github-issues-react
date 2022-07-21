@@ -5,24 +5,28 @@ export interface IUsersState {
   users: IUser[] | IUserDetailed[];
   isLoading: boolean;
   error: null;
+  totalCount: number;
 }
 
 export interface IRepositoriesState {
   repositories: IRepo[];
   isLoading: boolean;
   error: null;
+  totalCount: number;
 }
 
 export const initialUserstState: IUsersState = {
   users: [],
   isLoading: false,
   error: null,
+  totalCount: 0,
 };
 
 export const initialRepositoriestState: IRepositoriesState = {
   repositories: [],
   isLoading: false,
   error: null,
+  totalCount: 0,
 };
 
 export interface ISearchValueState {
@@ -44,7 +48,8 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
       console.log(action.payload);
       return {
         ...state,
-        users: action.payload || [],
+        users: action.payload.usersDetails || [],
+        totalCount: action.payload.totalCount,
       };
     case "FETCH_USERS/rejected":
       console.log(action.payload);
@@ -99,7 +104,8 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
       console.log(action.payload);
       return {
         ...state,
-        repositories: action.payload || [],
+        repositories: action.payload.repositoriesDetails || [],
+        totalCount: action.payload.totalCount,
       };
     case "FETCH_REPOSITORIES/rejected":
       console.log(action.payload);

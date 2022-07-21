@@ -19,6 +19,11 @@ export interface IUsersFromAPI {
   url: string;
 }
 
+export interface IUsersApiResponse {
+  usersDetails: IUser[];
+  totalCount: number;
+}
+
 export interface IUser {
   id: number;
   name: string;
@@ -31,6 +36,11 @@ export interface IUser {
 export interface IUserDetailed extends IUser {
   followers: number;
   following: number;
+}
+
+export interface IReposApiResponse {
+  repositoriesDetails: IRepo[];
+  totalCount: number;
 }
 
 export interface IRepositoriesFromAPI {

@@ -3,7 +3,13 @@ import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "../store/hooks";
 import { fetchUsers, fetchRepositories } from "../store/results/actions";
-import { getAllUsers, getAllRepositories, getSearchValue } from "../store/results/selectors";
+import {
+  getAllUsers,
+  getAllRepositories,
+  getRepositoriesTotalCount,
+  getUsersTotalCount,
+  getSearchValue,
+} from "../store/results/selectors";
 import { IUser, IRepo, UserOrRepo } from "../helpers/interfaces";
 import User from "../components/User";
 import Repo from "../components/Repo";
@@ -13,6 +19,8 @@ const ResultsPage = () => {
 
   const users = useSelector(getAllUsers);
   const repositories = useSelector(getAllRepositories);
+  const repositoriesTotalCount = useSelector(getRepositoriesTotalCount);
+  const usersTotalCount = useSelector(getUsersTotalCount);
   const searchValue = useSelector(getSearchValue);
 
   useEffect(() => {
@@ -33,12 +41,14 @@ const ResultsPage = () => {
   );
   console.log(componentsToDisplay);
 
+  const resultsTotalCount = repositoriesTotalCount + usersTotalCount;
+
   return (
     <>
       <div className="wrapper-page">
         <div className="results-container">
           <header>
-            <h1>results</h1>
+            <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
           </header>
           <section className="results">{componentsToDisplay}</section>
         </div>
