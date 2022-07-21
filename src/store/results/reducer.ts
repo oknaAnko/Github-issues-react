@@ -67,6 +67,22 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         ...state,
         error: action.payload,
       };
+    case "FETCH_USER/pending":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "FETCH_USER/fulfilled":
+      console.log(action.payload);
+      return {
+        ...state,
+        users: [action.payload],
+      };
+    case "FETCH_USER/rejected":
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return state;
   }
