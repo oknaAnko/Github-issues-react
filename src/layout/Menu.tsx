@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch } from "../store/hooks";
 import { storeSearchValue } from "../store/results/actions";
 import useDebounce from "../helpers/useDebounce";
@@ -26,7 +27,9 @@ const Menu = () => {
     <>
       <header className="menu">
         <div className="wrapper">
-          <img src={`${logo}`} alt="logo" />
+          <Link to="/">
+            <img src={`${logo}`} alt="logo" />
+          </Link>
           <form onSubmit={handleFormSubmit}>
             <input
               type="text"
