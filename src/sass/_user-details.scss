@@ -1,0 +1,85 @@
+.user-page {
+  width: 296px;
+  height: 457px;
+  margin: 0 auto;
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .user-page-avatar {
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .user-page-name {
+    height: 32px;
+    margin-top: 16px;
+
+    @include name-text("Roboto", #24292f);
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .user-page-login {
+    height: 32px;
+
+    @include name-text("Roboto", #6f7781);
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  .user-page-follow-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    gap: 19px;
+    height: 16px;
+    margin-top: 13px;
+    align-items: center;
+
+    .user-page-follow {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 0px;
+      gap: 4px;
+      height: 16px;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+
+      & span {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+
+      .follow-number {
+        height: 16px;
+
+        @include name-text("Roboto", #6f7781);
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
+
+      .follow-text {
+        height: 16px;
+
+        @include name-text("Roboto", #6f7781);
+        font-size: 12px;
+        line-height: 20px;
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+      }
+    }
+  }
+}

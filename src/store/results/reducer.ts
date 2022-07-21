@@ -1,8 +1,8 @@
 import { AnyAction } from "@reduxjs/toolkit";
-import { IUser, IRepo } from "../../helpers/interfaces";
+import { IUser, IRepo, IUserDetailed } from "../../helpers/interfaces";
 
 export interface IUsersState {
-  users: IUser[];
+  users: IUser[] | IUserDetailed[];
   isLoading: boolean;
   error: null;
 }
@@ -73,7 +73,7 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         isLoading: true,
       };
     case "FETCH_USER/fulfilled":
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         users: [action.payload],

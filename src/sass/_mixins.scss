@@ -4,8 +4,6 @@
 }
 
 @mixin name-text($font-family, $font-color) {
-  width: 890px;
-
   font-family: $font-family, sans-serif;
   font-style: normal;
   // font-weight: 500;

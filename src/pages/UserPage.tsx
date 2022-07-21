@@ -4,13 +4,14 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../store/hooks";
 import { getAllUsers } from "../store/results/selectors";
 import { fetchUser } from "../store/results/actions";
+import { IUserDetailed } from "../helpers/interfaces";
+import { starIcon, usersIcon } from "../helpers/icons";
 
 const UserPage = () => {
   const { login } = useParams();
   const dispatch = useAppDispatch();
 
-  const user = useSelector(getAllUsers).find((user) => user.login === login);
-
+  const user = useSelector(getAllUsers).find((user) => user.login === login) as IUserDetailed | undefined;
   useEffect(() => {
     if (!user) {
       if (login) dispatch(fetchUser(login));
@@ -19,7 +20,30 @@ const UserPage = () => {
 
   return (
     <>
-      <div>{user?.name}</div>
+      {user ? (
+        <div className="user-page">
+          <img src={user.avatar_url} className="user-page-avatar" alt="avatar" />
+          <p className="user-page-name">{user.name}</p>
+          <p className="user-page-login">{user.login}</p>
+          <div className="user-page-follow-container">
+            <div className="user-page-follow">
+              <span>{usersIcon}</span>
+              <p className="follow-number">{user.followers}</p>
+              <p className="follow-text">Followers</p>
+            </div>
+            <div className="user-page-follow">
+              <p className="follow-number">{user.followers}</p>
+              <p className="follow-text">Following</p>
+            </div>
+            <div className="user-page-follow">
+              <span>{starIcon}</span>
+              <p className="follow-number">0</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <p>Brak usera</p>
+      )}
     </>
   );
 };
