@@ -13,9 +13,6 @@ import {
 export const FETCH_REPOSITORIES = "FETCH_REPOSITORIES";
 export const FETCH_USERS = "FETCH_USERS";
 
-export const FETCH_FILTERED_REPOSITORIES = "FETCH_FILTERED_REPOSITORIES";
-export const FETCH_FILTERED_USERS = "FETCH_FILTERED_USERS";
-
 export const STORE_SEARCH_VALUE = "STORE_SEARCH_VALUE";
 
 export const FETCH_USER = "FETCH_USER";
@@ -30,38 +27,36 @@ const headers: AxiosRequestHeaders = {
 export const fetchUsers = createAsyncThunk<IUsersApiResponse, string>(
   FETCH_USERS,
   async (searchValue, { rejectWithValue }) => {
-  try {
-    let res;
+    try {
+      let res;
       let users;
       let totalCount;
 
-    if (searchValue) {
-      res = await axios.get(`https://api.github.com/search/users?q=${searchValue}`, {
-        headers,
-      });
+      if (searchValue) {
+        res = await axios.get(`https://api.github.com/search/users?q=${searchValue}`, {
+          headers,
+        });
 
-      users = res.data.items;
+        users = res.data.items;
         totalCount = res.data.total_count;
-    } else {
-      res = await axios.get("https://api.github.com/users", { headers });
+      } else {
+        res = await axios.get("https://api.github.com/users", { headers });
 
-      users = res.data;
+        users = res.data;
         totalCount = res.data.length;
-    }
+      }
 
-      // console.log(users);
-    const usersURLs = users.map((item: IUsersFromAPI) => item.url);
+      const usersURLs = users.map((item: IUsersFromAPI) => item.url);
 
-    const userPromiseArray = usersURLs.map((url: string) => axios.get(url, { headers }));
+      const userPromiseArray = usersURLs.map((url: string) => axios.get(url, { headers }));
 
-    const usersDetails = await (await Promise.all(userPromiseArray)).map((res) => res.data);
-      // console.log("usersDetails", usersDetails);
+      const usersDetails = await (await Promise.all(userPromiseArray)).map((res) => res.data);
       return { usersDetails, totalCount };
-  } catch (err) {
-    console.log(err);
-    // console.log(err.response.data.message);
-    return rejectWithValue(err);
-  }
+    } catch (err) {
+      console.log(err);
+      // console.log(err.response.data.message);
+      return rejectWithValue(err);
+    }
   }
 );
 

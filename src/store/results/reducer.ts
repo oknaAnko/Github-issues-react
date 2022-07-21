@@ -45,7 +45,6 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         isLoading: true,
       };
     case "FETCH_USERS/fulfilled":
-      console.log(action.payload);
       return {
         ...state,
         users: action.payload.usersDetails || [],
@@ -57,28 +56,13 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         ...state,
         error: action.payload,
       };
-    case "FETCH_FILTERED_USERS/pending":
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case "FETCH_FILTERED_USERS/fulfilled":
-      return {
-        ...state,
-        users: action.payload || [],
-      };
-    case "FETCH_FILTERED_USERS/rejected":
-      return {
-        ...state,
-        error: action.payload,
-      };
+
     case "FETCH_USER/pending":
       return {
         ...state,
         isLoading: true,
       };
     case "FETCH_USER/fulfilled":
-      // console.log(action.payload);
       return {
         ...state,
         users: [action.payload],
@@ -88,6 +72,7 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         ...state,
         error: action.payload,
       };
+
     default:
       return state;
   }
@@ -101,7 +86,6 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
         isLoading: true,
       };
     case "FETCH_REPOSITORIES/fulfilled":
-      console.log(action.payload);
       return {
         ...state,
         repositories: action.payload.repositoriesDetails || [],
@@ -109,22 +93,6 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
       };
     case "FETCH_REPOSITORIES/rejected":
       console.log(action.payload);
-      return {
-        ...state,
-        error: action.payload,
-      };
-
-    case "FETCH_FILTERED_REPOSITORIES/pending":
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case "FETCH_FILTERED_REPOSITORIES/fulfilled":
-      return {
-        ...state,
-        repositories: action.payload || [],
-      };
-    case "FETCH_FILTERED_REPOSITORIES/rejected":
       return {
         ...state,
         error: action.payload,
