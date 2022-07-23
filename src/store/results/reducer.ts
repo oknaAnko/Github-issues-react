@@ -4,14 +4,14 @@ import { IUser, IRepo, IUserDetailed } from "../../helpers/interfaces";
 export interface IUsersState {
   users: IUser[] | IUserDetailed[];
   isLoading: boolean;
-  error: null;
+  error: null | string;
   totalCount: number;
 }
 
 export interface IRepositoriesState {
   repositories: IRepo[];
   isLoading: boolean;
-  error: null;
+  error: null | string;
   totalCount: number;
 }
 
@@ -52,11 +52,10 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         isLoading: false,
       };
     case "FETCH_USERS/rejected":
-      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
-        error: action.payload,
+        error: action.payload.data.message,
       };
 
     case "FETCH_USER/pending":
@@ -74,7 +73,7 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
       return {
         ...state,
         isLoading: false,
-        error: action.payload,
+        error: action.payload.data.message,
       };
 
     default:
@@ -97,11 +96,10 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
         isLoading: false,
       };
     case "FETCH_REPOSITORIES/rejected":
-      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
-        error: action.payload,
+        error: action.payload.data.message,
       };
 
     default:

@@ -53,9 +53,8 @@ export const fetchUsers = createAsyncThunk<IUsersApiResponse, string>(
       const usersDetails = await (await Promise.all(userPromiseArray)).map((res) => res.data);
       return { usersDetails, totalCount };
     } catch (err) {
-      console.log(err);
-      // console.log(err.response.data.message);
-      return rejectWithValue(err);
+      const errorResponse = (err as { response: { [key: string]: string } }).response;
+      return rejectWithValue(errorResponse);
     }
   }
 );
@@ -90,8 +89,8 @@ export const fetchRepositories = createAsyncThunk<IReposApiResponse, string>(
       // console.log("repositoriesDetails", repositoriesDetails);
       return { repositoriesDetails, totalCount };
     } catch (err) {
-      console.log(err);
-      return rejectWithValue(err);
+      const errorResponse = (err as { response: { [key: string]: string } }).response;
+      return rejectWithValue(errorResponse);
     }
   }
 );
@@ -100,11 +99,11 @@ export const storeSearchValue = createAction<string>(STORE_SEARCH_VALUE);
 
 export const fetchUser = createAsyncThunk<IUserDetailed, string>(FETCH_USER, async (login, { rejectWithValue }) => {
   try {
-    const res = await axios.get(`https://api.github.com/users/${login}`);
+    const res = await axios.get(`https://api.github.com/users/${login}`, { headers });
     const user = res.data;
     return user;
   } catch (err) {
-    console.log(err);
-    rejectWithValue(err);
+    const errorResponse = (err as { response: { [key: string]: string } }).response;
+    return rejectWithValue(errorResponse);
   }
 });

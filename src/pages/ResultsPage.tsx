@@ -5,9 +5,11 @@ import { useAppDispatch } from "../store/hooks";
 import { fetchUsers, fetchRepositories } from "../store/results/actions";
 import {
   getAllUsers,
+  getUsersError,
   getUsersLoadingStatus,
   getUsersTotalCount,
   getAllRepositories,
+  getRepositoriesError,
   getRepositoriesLoadingStatus,
   getRepositoriesTotalCount,
   getSearchValue,
@@ -20,10 +22,12 @@ const ResultsPage = () => {
   const dispatch = useAppDispatch();
 
   const users = useSelector(getAllUsers);
+  const usersError = useSelector(getUsersError);
   const loadingUsers = useSelector(getUsersLoadingStatus);
   const usersTotalCount = useSelector(getUsersTotalCount);
 
   const repositories = useSelector(getAllRepositories);
+  const repositoriesError = useSelector(getRepositoriesError);
   const loadingRepositories = useSelector(getRepositoriesLoadingStatus);
   const repositoriesTotalCount = useSelector(getRepositoriesTotalCount);
   const searchValue = useSelector(getSearchValue);
@@ -52,12 +56,23 @@ const ResultsPage = () => {
     <>
       <div className="wrapper-page">
         {(loadingUsers || loadingRepositories) && <p className="loading-status">Trwa ładowanie danych...</p>}
-        <div className="results-container">
-          <header>
-            <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
-          </header>
-          <section className="results">{componentsToDisplay}</section>
-        </div>
+        {usersError || repositoriesError ? (
+          <p className="error-message">
+            Wystąpił błąd:{" "}
+            {usersError === repositoriesError
+              ? usersError
+              : Boolean(usersError)
+              ? usersError
+              : Boolean(repositoriesError) && repositoriesError}
+          </p>
+        ) : (
+          <div className="results-container">
+            <header>
+              <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
+            </header>
+            <section className="results">{componentsToDisplay}</section>
+          </div>
+        )}
       </div>
     </>
   );
