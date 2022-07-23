@@ -67,6 +67,7 @@ export interface IRepo {
   language: string;
   license: Partial<ILicense>;
   updated_at: string;
+  open_issues_count: number;
 }
 
 export type UserOrRepo = IUser | IRepo;
