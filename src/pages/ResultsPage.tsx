@@ -23,12 +23,12 @@ const ResultsPage = () => {
 
   const users = useSelector(getAllUsers);
   const usersError = useSelector(getUsersError);
-  const loadingUsers = useSelector(getUsersLoadingStatus);
+  const usersLoading = useSelector(getUsersLoadingStatus);
   const usersTotalCount = useSelector(getUsersTotalCount);
 
   const repositories = useSelector(getAllRepositories);
   const repositoriesError = useSelector(getRepositoriesError);
-  const loadingRepositories = useSelector(getRepositoriesLoadingStatus);
+  const repositoriesLoading = useSelector(getRepositoriesLoadingStatus);
   const repositoriesTotalCount = useSelector(getRepositoriesTotalCount);
   const searchValue = useSelector(getSearchValue);
 
@@ -55,7 +55,7 @@ const ResultsPage = () => {
   return (
     <>
       <div className="wrapper-page">
-        {(loadingUsers || loadingRepositories) && <p className="loading-status">Trwa ładowanie danych...</p>}
+        {(usersLoading || repositoriesLoading) && <p className="loading-status">Trwa ładowanie danych...</p>}
         {usersError || repositoriesError ? (
           <p className="error-message">
             Wystąpił błąd:{" "}

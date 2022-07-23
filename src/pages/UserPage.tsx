@@ -13,7 +13,7 @@ const UserPage = () => {
 
   const user = useSelector(getAllUsers).find((user) => user.login === login) as IUserDetailed | undefined;
   const userError = useSelector(getUsersError);
-  const loadingUser = useSelector(getUsersLoadingStatus);
+  const userLoading = useSelector(getUsersLoadingStatus);
 
   useEffect(() => {
     if (!user) {
@@ -23,8 +23,8 @@ const UserPage = () => {
 
   return (
     <>
-      {loadingUser && <p className="loading-status">Trwa ładowanie danych...</p>}
-      {!loadingUser && user === undefined && <p className="loading-status">Nie znaleziono usera</p>}
+      {userLoading && <p className="loading-status">Trwa ładowanie danych...</p>}
+      {!userLoading && user === undefined && <p className="loading-status">Nie znaleziono usera</p>}
       {userError && <p className="error-message"> Wystąpił błąd: {userError}</p>}
       {user && (
         <div className="user-page">
