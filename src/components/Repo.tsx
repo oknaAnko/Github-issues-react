@@ -47,6 +47,11 @@ const Repo: React.FC<Props> = ({ repo }) => {
             <div className="date">
               <p>{days > 21 ? `Updated on ${udpateDate}` : `Updated ${updateFromNow}`}</p>
             </div>
+            <div className="issues">
+              <p>
+                {repo.open_issues_count} {repo.open_issues_count === 1 ? `issue` : `issues`} need help
+              </p>
+            </div>
           </div>
         </div>
       </div>
