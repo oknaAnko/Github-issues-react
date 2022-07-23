@@ -102,6 +102,25 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
         error: action.payload.data.message,
       };
 
+    case "FETCH_USERS_REPOS/pending":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "FETCH_USERS_REPOS/fulfilled":
+      console.log(action.payload);
+      return {
+        ...state,
+        repositories: action.payload,
+        isLoading: false,
+      };
+    case "FETCH_USERS_REPOS/rejected":
+      return {
+        ...state,
+        error: action.payload.data.message,
+        isLoading: false,
+      };
+
     default:
       return state;
   }

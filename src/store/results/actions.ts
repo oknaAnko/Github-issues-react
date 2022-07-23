@@ -16,6 +16,7 @@ export const FETCH_USERS = "FETCH_USERS";
 export const STORE_SEARCH_VALUE = "STORE_SEARCH_VALUE";
 
 export const FETCH_USER = "FETCH_USER";
+export const FETCH_USERS_REPOS = "FETCH_USERS_REPOS";
 
 const token = process.env.REACT_APP_API_TOKEN;
 
@@ -50,7 +51,7 @@ export const fetchUsers = createAsyncThunk<IUsersApiResponse, string>(
 
       const userPromiseArray = usersURLs.map((url: string) => axios.get(url, { headers }));
 
-      const usersDetails = await (await Promise.all(userPromiseArray)).map((res) => res.data);
+      const usersDetails: IUser[] = await (await Promise.all(userPromiseArray)).map((res) => res.data);
       return { usersDetails, totalCount };
     } catch (err) {
       const errorResponse = (err as { response: { [key: string]: string } }).response;
@@ -107,3 +108,17 @@ export const fetchUser = createAsyncThunk<IUserDetailed, string>(FETCH_USER, asy
     return rejectWithValue(errorResponse);
   }
 });
+
+export const fetchUserRepos = createAsyncThunk<IRepo[], string>(
+  FETCH_USERS_REPOS,
+  async (login, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`https://api.github.com/users/${login}/repos?per_page=100`, { headers });
+      const userRepos = res.data;
+      return userRepos;
+    } catch (err) {
+      const errorResponse = (err as { response: { [key: string]: string } }).response;
+      return rejectWithValue(errorResponse);
+    }
+  }
+);

@@ -2,8 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../store/hooks";
-import { getAllUsers, getUsersError, getUsersLoadingStatus } from "../store/results/selectors";
-import { fetchUser } from "../store/results/actions";
+import {
+  getAllUsers,
+  getUsersError,
+  getUsersLoadingStatus,
+  getAllRepositories,
+  getRepositoriesError,
+  getRepositoriesLoadingStatus,
+} from "../store/results/selectors";
+import { fetchUser, fetchUserRepos } from "../store/results/actions";
 import { IUserDetailed } from "../helpers/interfaces";
 import { starIcon, usersIcon } from "../helpers/icons";
 
@@ -15,9 +22,20 @@ const UserPage = () => {
   const userError = useSelector(getUsersError);
   const userLoading = useSelector(getUsersLoadingStatus);
 
+  const starsCount = useSelector(getAllRepositories)
+    .map((user) => user.stargazers_count)
+    .reduce((a, b) => a + b, 0);
+  const usersReposError = useSelector(getRepositoriesError);
+  const usersReposLoading = useSelector(getRepositoriesLoadingStatus);
+
   useEffect(() => {
     if (!user) {
-      if (login) dispatch(fetchUser(login));
+      if (login) {
+        dispatch(fetchUser(login));
+        dispatch(fetchUserRepos(login));
+      }
+    } else {
+      if (login) dispatch(fetchUserRepos(login));
     }
   }, []);
 
@@ -42,8 +60,14 @@ const UserPage = () => {
               <p className="follow-text">Following</p>
             </div>
             <div className="user-page-follow">
-              <span>{starIcon}</span>
-              <p className="follow-number">0</p>
+              {usersReposLoading && <p className="loading-status-small">Ładowanie...</p>}
+              {starsCount && !usersReposLoading && (
+                <>
+                  <span>{starIcon}</span>
+                  <p className="follow-number">{starsCount}</p>
+                </>
+              )}
+              {usersReposError && <p className="error-message"> Wystąpił błąd</p>}
             </div>
           </div>
         </div>
