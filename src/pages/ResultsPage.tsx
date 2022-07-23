@@ -5,9 +5,11 @@ import { useAppDispatch } from "../store/hooks";
 import { fetchUsers, fetchRepositories } from "../store/results/actions";
 import {
   getAllUsers,
-  getAllRepositories,
-  getRepositoriesTotalCount,
+  getUsersLoadingStatus,
   getUsersTotalCount,
+  getAllRepositories,
+  getRepositoriesLoadingStatus,
+  getRepositoriesTotalCount,
   getSearchValue,
 } from "../store/results/selectors";
 import { IUser, IRepo, UserOrRepo } from "../helpers/interfaces";
@@ -18,9 +20,12 @@ const ResultsPage = () => {
   const dispatch = useAppDispatch();
 
   const users = useSelector(getAllUsers);
-  const repositories = useSelector(getAllRepositories);
-  const repositoriesTotalCount = useSelector(getRepositoriesTotalCount);
+  const loadingUsers = useSelector(getUsersLoadingStatus);
   const usersTotalCount = useSelector(getUsersTotalCount);
+
+  const repositories = useSelector(getAllRepositories);
+  const loadingRepositories = useSelector(getRepositoriesLoadingStatus);
+  const repositoriesTotalCount = useSelector(getRepositoriesTotalCount);
   const searchValue = useSelector(getSearchValue);
 
   useEffect(() => {
@@ -46,6 +51,7 @@ const ResultsPage = () => {
   return (
     <>
       <div className="wrapper-page">
+        {(loadingUsers || loadingRepositories) && <p className="loading-status">Trwa ładowanie danych...</p>}
         <div className="results-container">
           <header>
             <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>

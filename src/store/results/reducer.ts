@@ -49,11 +49,13 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
         ...state,
         users: action.payload.usersDetails || [],
         totalCount: action.payload.totalCount,
+        isLoading: false,
       };
     case "FETCH_USERS/rejected":
       console.log(action.payload);
       return {
         ...state,
+        isLoading: false,
         error: action.payload,
       };
 
@@ -66,10 +68,12 @@ export const usersReducer = (state: IUsersState = initialUserstState, action: An
       return {
         ...state,
         users: [action.payload],
+        isLoading: false,
       };
     case "FETCH_USER/rejected":
       return {
         ...state,
+        isLoading: false,
         error: action.payload,
       };
 
@@ -90,11 +94,13 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
         ...state,
         repositories: action.payload.repositoriesDetails || [],
         totalCount: action.payload.totalCount,
+        isLoading: false,
       };
     case "FETCH_REPOSITORIES/rejected":
       console.log(action.payload);
       return {
         ...state,
+        isLoading: false,
         error: action.payload,
       };
 
