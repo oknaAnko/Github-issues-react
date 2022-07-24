@@ -54,7 +54,7 @@ const ResultsPage = () => {
 
   return (
     <>
-      <div className="wrapper-page">
+      <div>
         {(usersLoading || repositoriesLoading) && <p className="loading-status">Trwa ładowanie danych...</p>}
         {usersError || repositoriesError ? (
           <p className="error-message">

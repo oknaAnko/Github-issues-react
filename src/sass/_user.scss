@@ -1,104 +1,65 @@
-//#region USER
 .container-u {
   @include flex-parent(column, flex-start);
-  @include flex-child();
-  width: 950px;
-  padding: 0px 16px 16px;
-  gap: 20px;
   align-self: stretch;
+  gap: 20px;
+  padding: 0px 16px 16px;
 
   .user {
     @include flex-parent(column, flex-start);
-    @include flex-child();
-    width: 918px;
-    padding: 0px;
     gap: 15px;
+    padding: 0px;
 
     .name-container-u {
       @include flex-parent(column, flex-start);
-      @include flex-child();
-      width: 100%;
       padding: 0px;
-      align-self: stretch;
-      order: 1;
 
       .name-u {
         @include flex-parent(row, center);
-        @include flex-child();
-        width: 100%;
-        padding: 0px;
         gap: 8px;
-        align-self: stretch;
+        padding: 0px;
 
         & img {
-          @include flex-child();
           width: 20px;
           height: 20px;
           border-radius: 50%;
         }
 
         & a {
-          @include name-text(SegoeUIBold, #166cd7);
+          @include font-styles(SegoeUIBold, 16px, 24px, #166cd7);
           text-decoration: none;
         }
 
         & div {
           @include flex-parent(row, flex-start);
-          padding: 0px;
           gap: 10px;
-          flex: none;
-          order: 1;
-          flex-grow: 1;
+          padding: 0px;
         }
       }
 
       .login-u {
         @include flex-parent(row, flex-start);
-        @include flex-child();
-        padding: 0px 0px 0px 28px;
         gap: 10px;
+        padding: 0px 0px 0px 28px;
 
         & p {
-          @include name-text("Roboto", #6f7781);
+          @include font-styles("Roboto", 16px, 24px, #6f7781);
         }
       }
     }
 
     .details-container-u {
       @include flex-parent(column, flex-start);
-      @include flex-child();
-      width: 100%;
-      padding: 0px 0px 0px 28px;
-      gap: 8px;
       align-self: stretch;
-      order: 2;
+      gap: 8px;
+      padding: 0px 0px 0px 28px;
 
       .bio {
-        @include flex-child();
-        align-self: stretch;
-
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 18px;
-        color: #24292f;
+        @include font-styles("Roboto", 14px, 18px, #24292f);
       }
 
       .location {
-        @include flex-child();
-        align-self: stretch;
-
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
-        /* Grayscale/Dark Gray 2 */
-        color: #6f7781;
+        @include font-styles("Roboto", 12px, 16px, #6f7781);
       }
     }
   }
 }
-
-//#endregion USER

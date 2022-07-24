@@ -33,21 +33,23 @@ const Repo: React.FC<Props> = ({ repo }) => {
             </div>
           </div>
           <div className="details-container">
-            <div className="stars">
+            <div className="details">
               <span> {starIcon}</span>
-              <p>{repo.stargazers_count}</p>
+              <p className="stars-text">{repo.stargazers_count}</p>
             </div>
-            <div className="language">
+            <div className="details">
               <span className="language-color" style={{ backgroundColor: githubColors[repo.language] }}></span>
               <p> {repo.language}</p>
             </div>
-            <div className="license">
-              <p>{repo.license ? repo.license.name : ""}</p>
-            </div>
-            <div className="date">
+            {repo.license && (
+              <div className="details">
+                <p>{repo.license.name}</p>
+              </div>
+            )}
+            <div className="details">
               <p>{days > 21 ? `Updated on ${udpateDate}` : `Updated ${updateFromNow}`}</p>
             </div>
-            <div className="issues">
+            <div className="details">
               <p>
                 {repo.open_issues_count} {repo.open_issues_count === 1 ? `issue` : `issues`} need help
               </p>

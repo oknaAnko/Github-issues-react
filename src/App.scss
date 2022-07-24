@@ -5,173 +5,92 @@
 
 //#region MENU STYLES
 .menu {
-  /* Grayscale/Darkest Gray */
   background: #24292f;
-  height: 72px;
 
   .wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @include flex-parent(row, center);
     justify-content: space-between;
-    padding: 17px 63px 17px 20px;
-    // gap: 880px;
-
-    position: relative;
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
+    padding: 17px 20px;
+
+    @media (max-width: 640px) {
+      padding: 10px 15px;
+    }
 
     .button-search {
       width: 242px;
       height: 37px;
-
-      flex: none;
-      order: 1;
-      flex-grow: 0;
-
-      /* Grayscale/ Light Gray 3 */
+      padding-left: 10px;
       border: 1px solid #d0d7de;
       border-radius: 5px;
       background-color: transparent;
       color: #d0d7de;
-      padding-left: 10px;
+
+      @media (max-width: 640px) {
+        width: 208px;
+      }
 
       &::placeholder {
-        position: absolute;
-        left: 7.02%;
-        right: 72.73%;
-        top: 16.22%;
-        bottom: 18.92%;
-
-        font-family: "Segoe UI";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 24px;
-
-        display: flex;
-        align-items: center;
-
-        /* Grayscale/ Light Gray 3 */
-        color: #d0d7de;
+        @include font-styles("Segoe UI", 16px, 24px, #d0d7de);
       }
     }
   }
 }
-
 //#endregion MENU STYLES
 
 //#region RESULTS STYLES
-.wrapper-page {
-  width: 1200px;
-  margin: 0 auto;
-  position: relative;
+.results-container {
+  @include flex-parent(column, flex-start);
+  max-width: 950px;
+  margin: 30px auto 0 auto;
+  padding: 0px;
 
-  .results-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 30px;
+  header {
+    padding: 0 16px 16px;
 
-    position: absolute;
-    width: 950px;
-    height: 1371px;
-    left: 127px;
-    top: 30px;
-
-    header {
-      width: 950px;
-      height: 26px;
-      padding: 0 16px 16px;
-      flex: none;
-      order: 0;
-      flex-grow: 0;
-
-      h1 {
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 21px;
-        line-height: 32px;
-        color: #000000;
-      }
-    }
-
-    .results {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0px;
-
-      width: 950px;
-      height: 1183px;
-
-      flex: none;
-      order: 1;
-      flex-grow: 0;
+    h1 {
+      @include font-styles("Roboto", 21px, 32px, #000000);
     }
   }
-}
 
+  .results {
+    @include flex-parent(column, flex-start);
+    padding: 0px;
+  }
+}
 //#endregion RESULTS STYLES
 
+//#region SEPARATION
 .separation {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
+  @include flex-parent(column, flex-start);
+  width: 100%;
   gap: 10px;
-
-  width: 918px;
-  height: 1px;
-
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+  padding: 0px;
 
   .separator {
-    width: 918px;
+    width: 100%;
     height: 1px;
     background: #c4c4c4;
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
   }
 }
+//#endregion SEPARATION
 
 .loading-status {
+  @include font-styles("Roboto", 16px, 16px, #6f7781);
   margin-top: 30px;
-  font-family: "Roboto";
-  font-style: italic;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 16px;
   text-align: center;
-  /* Grayscale/ Dark Gray 1 */
-  color: #6f7781;
+  font-style: italic;
 }
 
 .loading-status-small {
-  font-family: "Roboto";
+  @include font-styles("Roboto", 12px, 20px, #6f7781);
+  text-align: center;
   font-style: italic;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 20px;
-  text-align: center;
-  /* Grayscale/ Dark Gray 1 */
-  color: #6f7781;
 }
+
 .error-message {
+  @include font-styles("Roboto", 32px, 32px, #000000);
   margin-top: 100px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 32px;
   text-align: center;
-  color: #000000;
 }
