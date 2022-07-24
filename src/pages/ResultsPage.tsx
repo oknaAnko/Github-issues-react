@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { arrowLeftIcon, arrowRightIcon } from "../helpers/icons";
 
 import { useAppDispatch } from "../store/hooks";
 import { fetchUsers, fetchRepositories } from "../store/results/actions";
@@ -71,6 +73,13 @@ const ResultsPage = () => {
               <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
             </header>
             <section className="results">{componentsToDisplay}</section>
+            <div className="pagination">
+              <Link to="#">
+                <span>{arrowLeftIcon}</span> Previous
+              </Link>
+              <div className="page-number"></div>
+              <Link to="#">Next {arrowRightIcon}</Link>
+            </div>
           </div>
         )}
       </div>

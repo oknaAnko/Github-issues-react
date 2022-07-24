@@ -24,3 +24,15 @@ export const usersIcon = (
     />
   </svg>
 );
+
+export const arrowLeftIcon = (
+  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 1L1 5L5 9" stroke="#8D959F" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+);
+
+export const arrowRightIcon = (
+  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 9L5 5L0.999999 1" stroke="#166CD7" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+);
