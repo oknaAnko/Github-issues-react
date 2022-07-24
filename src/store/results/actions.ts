@@ -1,14 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosRequestHeaders } from "axios";
-import {
-  IRepo,
-  IRepositoriesFromAPI,
-  IUser,
-  IUsersFromAPI,
-  IUserDetailed,
-  IReposApiResponse,
-  IUsersApiResponse,
-} from "../../helpers/interfaces";
+import axios, { AxiosRequestHeaders, AxiosResponse } from "axios";
+import { IRepo, IUser, IUserDetailed, IReposApiResponse, IUsersApiResponse } from "../../helpers/interfaces";
 
 export const FETCH_REPOSITORIES = "FETCH_REPOSITORIES";
 export const FETCH_USERS = "FETCH_USERS";
@@ -29,9 +21,9 @@ export const fetchUsers = createAsyncThunk<IUsersApiResponse, string>(
   FETCH_USERS,
   async (searchValue, { rejectWithValue }) => {
     try {
-      let res;
-      let users;
-      let totalCount;
+      let res: AxiosResponse<any, any>;
+      let users: IUser[];
+      let totalCount: number;
 
       if (searchValue) {
         res = await axios.get(`https://api.github.com/search/users?q=${searchValue}`, {
@@ -47,11 +39,11 @@ export const fetchUsers = createAsyncThunk<IUsersApiResponse, string>(
         totalCount = res.data.length;
       }
 
-      const usersURLs = users.map((item: IUsersFromAPI) => item.url);
+      const usersURLs = users.map((item: IUser) => item.url);
 
       const userPromiseArray = usersURLs.map((url: string) => axios.get(url, { headers }));
 
-      const usersDetails: IUser[] = await (await Promise.all(userPromiseArray)).map((res) => res.data);
+      const usersDetails: IUser[] = (await Promise.all(userPromiseArray)).map((res) => res.data);
       return { usersDetails, totalCount };
     } catch (err) {
       const errorResponse = (err as { response: { [key: string]: string } }).response;
@@ -64,9 +56,9 @@ export const fetchRepositories = createAsyncThunk<IReposApiResponse, string>(
   FETCH_REPOSITORIES,
   async (searchValue, { rejectWithValue }) => {
     try {
-      let res;
-      let repositories;
-      let totalCount;
+      let res: AxiosResponse<any, any>;
+      let repositories: IRepo[];
+      let totalCount: number;
 
       if (searchValue) {
         res = await axios.get(`https://api.github.com/search/repositories?q=${searchValue}`, {
@@ -82,11 +74,11 @@ export const fetchRepositories = createAsyncThunk<IReposApiResponse, string>(
         totalCount = res.data.length;
       }
 
-      const repositoriesURLs = repositories.map((item: IRepositoriesFromAPI) => item.url);
+      const repositoriesURLs = repositories.map((item: IRepo) => item.url);
 
       const repositoryPromiseArray = repositoriesURLs.map((url: string) => axios.get(url, { headers }));
 
-      const repositoriesDetails = await (await Promise.all(repositoryPromiseArray)).map((res) => res.data);
+      const repositoriesDetails = (await Promise.all(repositoryPromiseArray)).map((res) => res.data);
       // console.log("repositoriesDetails", repositoriesDetails);
       return { repositoriesDetails, totalCount };
     } catch (err) {
@@ -101,7 +93,7 @@ export const storeSearchValue = createAction<string>(STORE_SEARCH_VALUE);
 export const fetchUser = createAsyncThunk<IUserDetailed, string>(FETCH_USER, async (login, { rejectWithValue }) => {
   try {
     const res = await axios.get(`https://api.github.com/users/${login}`, { headers });
-    const user = res.data;
+    const user: IUserDetailed = res.data;
     return user;
   } catch (err) {
     const errorResponse = (err as { response: { [key: string]: string } }).response;
