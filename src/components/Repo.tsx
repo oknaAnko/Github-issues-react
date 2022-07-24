@@ -1,8 +1,8 @@
 import React from "react";
+import moment from "moment";
 import { IRepo } from "../helpers/interfaces";
 import { githubColors } from "../files/github-colors";
 import { fileIcon, starIcon } from "../helpers/icons";
-import moment from "moment";
 
 interface Props {
   repo: IRepo;
@@ -13,7 +13,7 @@ const Repo: React.FC<Props> = ({ repo }) => {
   const updateMoment = moment(repo.updated_at);
   const days = Math.round(moment.duration(todayMoment.diff(updateMoment)).asDays());
 
-  const udpateDate = moment(repo.updated_at).format("D MMM YYYY");
+  const updateDate = moment(repo.updated_at).format("D MMM YYYY");
   const updateFromNow = moment(repo.updated_at).fromNow();
 
   return (
@@ -47,7 +47,7 @@ const Repo: React.FC<Props> = ({ repo }) => {
               </div>
             )}
             <div className="repo-detail">
-              <p>{days > 21 ? `Updated on ${udpateDate}` : `Updated ${updateFromNow}`}</p>
+              <p>{days > 21 ? `Updated on ${updateDate}` : `Updated ${updateFromNow}`}</p>
             </div>
             <div className="repo-detail">
               <p>

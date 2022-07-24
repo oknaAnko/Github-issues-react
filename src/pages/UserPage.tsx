@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { starIcon, usersIcon } from "../helpers/icons";
 import { useAppDispatch } from "../store/hooks";
+import { fetchUser, fetchUserRepos } from "../store/results/actions";
 import {
   getAllUsers,
   getUsersError,
@@ -10,9 +12,7 @@ import {
   getRepositoriesError,
   getRepositoriesLoadingStatus,
 } from "../store/results/selectors";
-import { fetchUser, fetchUserRepos } from "../store/results/actions";
 import { IUserDetailed } from "../helpers/interfaces";
-import { starIcon, usersIcon } from "../helpers/icons";
 
 const UserPage = () => {
   const { login } = useParams();

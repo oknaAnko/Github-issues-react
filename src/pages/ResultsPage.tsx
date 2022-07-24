@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { arrowLeftIcon, arrowRightIcon } from "../helpers/icons";
-
 import { useAppDispatch } from "../store/hooks";
 import { fetchUsers, fetchRepositories } from "../store/results/actions";
 import {
@@ -32,6 +31,7 @@ const ResultsPage = () => {
   const repositoriesError = useSelector(getRepositoriesError);
   const repositoriesLoading = useSelector(getRepositoriesLoadingStatus);
   const repositoriesTotalCount = useSelector(getRepositoriesTotalCount);
+
   const searchValue = useSelector(getSearchValue);
 
   useEffect(() => {
@@ -50,40 +50,37 @@ const ResultsPage = () => {
         <Repo key={index} repo={item as IRepo} />
       )
   );
-  console.log(componentsToDisplay);
 
   const resultsTotalCount = repositoriesTotalCount + usersTotalCount;
 
   return (
-    <>
-      <div>
-        {(usersLoading || repositoriesLoading) && <p className="loading-status">Trwa ładowanie danych...</p>}
-        {usersError || repositoriesError ? (
-          <p className="error-message">
-            Wystąpił błąd:{" "}
-            {usersError === repositoriesError
-              ? usersError
-              : Boolean(usersError)
-              ? usersError
-              : Boolean(repositoriesError) && repositoriesError}
-          </p>
-        ) : (
-          <div className="results-container">
-            <header>
-              <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
-            </header>
-            <section className="results">{componentsToDisplay}</section>
-            <div className="pagination">
-              <Link to="#">
-                <span>{arrowLeftIcon}</span> Previous
-              </Link>
-              <div className="page-number"></div>
-              <Link to="#">Next {arrowRightIcon}</Link>
-            </div>
+    <div>
+      {(usersLoading || repositoriesLoading) && <p className="loading-status">Trwa ładowanie danych...</p>}
+      {usersError || repositoriesError ? (
+        <p className="error-message">
+          Wystąpił błąd:{" "}
+          {usersError === repositoriesError
+            ? usersError
+            : Boolean(usersError)
+            ? usersError
+            : Boolean(repositoriesError) && repositoriesError}
+        </p>
+      ) : (
+        <div className="results-container">
+          <header>
+            <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
+          </header>
+          <section className="results">{componentsToDisplay}</section>
+          <div className="pagination">
+            <Link to="#">
+              <span>{arrowLeftIcon}</span> Previous
+            </Link>
+            <div className="page-number"></div>
+            <Link to="#">Next {arrowRightIcon}</Link>
           </div>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 };
 

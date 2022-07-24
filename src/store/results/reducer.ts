@@ -108,7 +108,6 @@ export const repositoriesReducer = (state: IRepositoriesState = initialRepositor
         isLoading: true,
       };
     case "FETCH_USERS_REPOS/fulfilled":
-      console.log(action.payload);
       return {
         ...state,
         repositories: action.payload,
