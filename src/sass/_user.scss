@@ -1,65 +1,64 @@
-.container-u {
+.user-container {
   @include flex-parent(column, flex-start);
   align-self: stretch;
   gap: 20px;
   padding: 0px 16px 16px;
+}
+.user {
+  @include flex-parent(column, flex-start);
+  gap: 15px;
+  padding: 0px;
 
-  .user {
+  &-titles {
     @include flex-parent(column, flex-start);
-    gap: 15px;
     padding: 0px;
 
-    .name-container-u {
-      @include flex-parent(column, flex-start);
+    &-name {
+      @include flex-parent(row, center);
+      gap: 8px;
       padding: 0px;
 
-      .name-u {
-        @include flex-parent(row, center);
-        gap: 8px;
-        padding: 0px;
-
-        & img {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-        }
-
-        & a {
-          @include font-styles(SegoeUIBold, 16px, 24px, #166cd7);
-          text-decoration: none;
-        }
-
-        & div {
-          @include flex-parent(row, flex-start);
-          gap: 10px;
-          padding: 0px;
-        }
+      & img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
       }
 
-      .login-u {
+      & a {
+        @include font-styles(SegoeUIBold, 16px, 24px, #166cd7);
+        text-decoration: none;
+      }
+
+      & div {
         @include flex-parent(row, flex-start);
         gap: 10px;
-        padding: 0px 0px 0px 28px;
-
-        & p {
-          @include font-styles("Roboto", 16px, 24px, #6f7781);
-        }
+        padding: 0px;
       }
     }
 
-    .details-container-u {
-      @include flex-parent(column, flex-start);
-      align-self: stretch;
-      gap: 8px;
+    &-login {
+      @include flex-parent(row, flex-start);
+      gap: 10px;
       padding: 0px 0px 0px 28px;
 
-      .bio {
-        @include font-styles("Roboto", 14px, 18px, #24292f);
+      & p {
+        @include font-styles("Roboto", 16px, 24px, #6f7781);
       }
+    }
+  }
 
-      .location {
-        @include font-styles("Roboto", 12px, 16px, #6f7781);
-      }
+  &-details {
+    @include flex-parent(column, flex-start);
+    align-self: stretch;
+    gap: 8px;
+    padding: 0px 0px 0px 28px;
+
+    &-bio {
+      @include font-styles("Roboto", 14px, 18px, #24292f);
+    }
+
+    &-location {
+      @include font-styles("Roboto", 12px, 16px, #6f7781);
     }
   }
 }

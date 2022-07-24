@@ -18,38 +18,38 @@ const Repo: React.FC<Props> = ({ repo }) => {
 
   return (
     <>
-      <div className="container">
+      <div className="repo-container">
         <div className="separation">
           <div className="separator"></div>
         </div>
         <div className="repo">
-          <div className="name-container">
-            <div className="name">
+          <div className="repo-titles">
+            <div className="repo-titles-name">
               <span>{fileIcon}</span>
               <p>{repo.full_name}</p>
             </div>
-            <div className="description">
+            <div className="repo-titles-description">
               <p>{repo.description}</p>
             </div>
           </div>
-          <div className="details-container">
-            <div className="details">
+          <div className="repo-details">
+            <div className="repo-detail">
               <span> {starIcon}</span>
               <p className="stars-text">{repo.stargazers_count}</p>
             </div>
-            <div className="details">
+            <div className="repo-detail">
               <span className="language-color" style={{ backgroundColor: githubColors[repo.language] }}></span>
               <p> {repo.language}</p>
             </div>
             {repo.license && (
-              <div className="details">
+              <div className="repo-detail">
                 <p>{repo.license.name}</p>
               </div>
             )}
-            <div className="details">
+            <div className="repo-detail">
               <p>{days > 21 ? `Updated on ${udpateDate}` : `Updated ${updateFromNow}`}</p>
             </div>
-            <div className="details">
+            <div className="repo-detail">
               <p>
                 {repo.open_issues_count} {repo.open_issues_count === 1 ? `issue` : `issues`} need help
               </p>

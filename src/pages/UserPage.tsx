@@ -45,21 +45,21 @@ const UserPage = () => {
       {!userLoading && user === undefined && <p className="loading-status">Nie znaleziono usera</p>}
       {userError && <p className="error-message"> Wystąpił błąd: {userError}</p>}
       {user && (
-        <div className="user-page">
+        <div className="user-page-container">
           <img src={user.avatar_url} className="user-page-avatar" alt="avatar" />
           <p className="user-page-name">{user.name}</p>
           <p className="user-page-login">{user.login}</p>
-          <div className="user-page-follow-container">
-            <div className="user-page-follow">
+          <div className="user-page-details">
+            <div className="user-page-detail">
               <span>{usersIcon}</span>
               <p className="follow-number">{user.followers}</p>
               <p className="follow-text">Followers</p>
             </div>
-            <div className="user-page-follow">
+            <div className="user-page-detail">
               <p className="follow-number">{user.followers}</p>
               <p className="follow-text">Following</p>
             </div>
-            <div className="user-page-follow">
+            <div className="user-page-detail">
               {usersReposLoading && <p className="loading-status-small">Ładowanie...</p>}
               {starsCount && !usersReposLoading && (
                 <>

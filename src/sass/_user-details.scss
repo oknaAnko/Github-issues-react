@@ -1,4 +1,4 @@
-.user-page {
+.user-page-container {
   @include flex-parent(column, center);
   width: 296px;
   margin: 45px auto 0 auto;
@@ -6,47 +6,46 @@
   @media (max-width: 360px) {
     width: 250px;
   }
+}
 
-  .user-page-avatar {
-    width: 100%;
-    border-radius: 50%;
+.user-page-avatar {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.user-page-name {
+  @include font-styles("Roboto", 26px, 32px, #24292f);
+  margin-top: 16px;
+}
+
+.user-page-login {
+  @include font-styles("Roboto", 20px, 32px, #6f7781);
+}
+
+.user-page-details {
+  @include flex-parent(row, center);
+  justify-content: center;
+  column-gap: 19px;
+  flex-wrap: wrap;
+  margin-top: 13px;
+  padding: 0px;
+}
+.user-page-detail {
+  @include flex-parent(row, flex-start);
+  padding: 0px;
+  gap: 4px;
+
+  & span {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
   }
 
-  .user-page-name {
-    @include font-styles("Roboto", 26px, 32px, #24292f);
-    margin-top: 16px;
+  .follow-number {
+    @include font-styles("Roboto", 12px, 20px, #6f7781);
   }
 
-  .user-page-login {
-    @include font-styles("Roboto", 20px, 32px, #6f7781);
-  }
-
-  .user-page-follow-container {
-    @include flex-parent(row, center);
-    justify-content: center;
-    column-gap: 19px;
-    flex-wrap: wrap;
-    margin-top: 13px;
-    padding: 0px;
-
-    .user-page-follow {
-      @include flex-parent(row, flex-start);
-      padding: 0px;
-      gap: 4px;
-
-      & span {
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-      }
-
-      .follow-number {
-        @include font-styles("Roboto", 12px, 20px, #6f7781);
-      }
-
-      .follow-text {
-        @include font-styles("Roboto", 12px, 20px, #6f7781);
-      }
-    }
+  .follow-text {
+    @include font-styles("Roboto", 12px, 20px, #6f7781);
   }
 }

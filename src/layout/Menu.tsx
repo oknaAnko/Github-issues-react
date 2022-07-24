@@ -25,21 +25,19 @@ const Menu = () => {
 
   return (
     <>
-      <header className="menu">
-        <div className="wrapper">
-          <Link to="/">
-            <img src={`${logo}`} alt="logo" />
-          </Link>
-          <form onSubmit={handleFormSubmit}>
-            <input
-              type="text"
-              className="button-search"
-              placeholder="Search"
-              value={searchValue}
-              onChange={handleInputChange}
-            />
-          </form>
-        </div>
+      <header className="menu-container">
+        <Link to="/">
+          <img src={`${logo}`} alt="logo" />
+        </Link>
+        <form onSubmit={handleFormSubmit}>
+          <input
+            type="text"
+            className="button-search"
+            placeholder="Search"
+            value={searchValue}
+            onChange={handleInputChange}
+          />
+        </form>
       </header>
     </>
   );

@@ -3,40 +3,37 @@
 @import "./sass/user";
 @import "./sass/user-details";
 
-//#region MENU STYLES
-.menu {
-  background: #24292f;
+.menu-container {
+  @include flex-parent(row, center);
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  padding: 17px 20px;
+  background-color: #24292f;
 
-  .wrapper {
-    @include flex-parent(row, center);
-    justify-content: space-between;
-    width: 100%;
-    margin: 0 auto;
-    padding: 17px 20px;
-
-    @media (max-width: 640px) {
-      padding: 10px 15px;
-    }
-
-    .button-search {
-      width: 242px;
-      height: 37px;
-      padding-left: 10px;
-      border: 1px solid #d0d7de;
-      border-radius: 5px;
-      background-color: transparent;
-      color: #d0d7de;
-
-      @media (max-width: 640px) {
-        width: 208px;
-      }
-
-      &::placeholder {
-        @include font-styles("Segoe UI", 16px, 24px, #d0d7de);
-      }
-    }
+  @media (max-width: 640px) {
+    padding: 10px 15px;
   }
 }
+
+.button-search {
+  width: 242px;
+  height: 37px;
+  padding-left: 10px;
+  border: 1px solid #d0d7de;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #d0d7de;
+
+  @media (max-width: 640px) {
+    width: 208px;
+  }
+
+  &::placeholder {
+    @include font-styles("Segoe UI", 16px, 24px, #d0d7de);
+  }
+}
+
 //#endregion MENU STYLES
 
 //#region RESULTS STYLES
@@ -53,12 +50,12 @@
       @include font-styles("Roboto", 21px, 32px, #000000);
     }
   }
-
-  .results {
-    @include flex-parent(column, flex-start);
-    padding: 0px;
-  }
 }
+.results {
+  @include flex-parent(column, flex-start);
+  padding: 0px;
+}
+
 //#endregion RESULTS STYLES
 
 //#region SEPARATION
