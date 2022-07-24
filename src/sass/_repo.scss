@@ -1,0 +1,71 @@
+.repo-container {
+  @include flex-parent(column, flex-start);
+  align-self: stretch;
+  gap: 20px;
+  padding: 0px 16px 16px;
+}
+
+.repo {
+  @include flex-parent(column, flex-start);
+  max-width: 918px;
+  gap: 15px;
+  padding: 0px;
+
+  &-titles {
+    @include flex-parent(column, flex-start);
+    gap: 5px;
+
+    &-name {
+      @include flex-parent(row, center);
+      gap: 8px;
+      padding: 0px;
+
+      & span {
+        width: 20px;
+        height: 20px;
+      }
+
+      & p {
+        @include font-styles("Roboto", 16px, 24px, #166cd7);
+      }
+    }
+
+    &-description {
+      @include flex-parent(row, center);
+      gap: 10px;
+      padding: 0px 0px 0px 28px;
+
+      & p {
+        @include font-styles("Roboto", 16px, 24px, #6f7781);
+      }
+    }
+  }
+
+  &-details {
+    @include flex-parent(row, center);
+    flex-wrap: wrap;
+    column-gap: 14px;
+    padding: 0px 0px 0px 28px;
+  }
+  .repo-detail {
+    @include flex-parent(row, center);
+    justify-content: center;
+    gap: 3px;
+    padding: 0px;
+
+    p {
+      @include font-styles("Roboto", 12px, 16px, #6f7781);
+    }
+  }
+
+  .stars-text {
+    font-family: "Segoe UI" !important;
+    font-weight: 600;
+  }
+
+  .language-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+}

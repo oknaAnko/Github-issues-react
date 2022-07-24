@@ -1,0 +1,18 @@
+@font-face {
+  font-family: SegoeUIBold;
+  src: url("../fonts/SegoeUIBold.ttf");
+}
+
+@mixin font-styles($font-family, $font-size, $line-height, $font-color) {
+  font-family: $font-family, sans-serif;
+  font-style: normal;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $font-color;
+}
+
+@mixin flex-parent($flex-direction, $align-items) {
+  display: flex;
+  flex-direction: $flex-direction;
+  align-items: $align-items;
+}
