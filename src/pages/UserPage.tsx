@@ -67,7 +67,7 @@ const UserPage = () => {
                   <p className="follow-number">{starsCount}</p>
                 </>
               )}
-              {usersReposError && <p className="error-message"> Wystąpił błąd</p>}
+              {usersReposError && <p className="error-message-small "> Wystąpił błąd</p>}
             </div>
           </div>
         </div>
