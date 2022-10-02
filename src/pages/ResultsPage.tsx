@@ -23,13 +23,16 @@ const ResultsPage = () => {
   const dispatch = useAppDispatch();
 
   const users = useSelector(getAllUsers);
+  // console.log("users", users);
   const usersError = useSelector(getUsersError);
   const usersLoading = useSelector(getUsersLoadingStatus);
+  // console.log(usersLoading);
   const usersTotalCount = useSelector(getUsersTotalCount);
 
   const repositories = useSelector(getAllRepositories);
   const repositoriesError = useSelector(getRepositoriesError);
   const repositoriesLoading = useSelector(getRepositoriesLoadingStatus);
+  // console.log(repositoriesLoading);
   const repositoriesTotalCount = useSelector(getRepositoriesTotalCount);
 
   const searchValue = useSelector(getSearchValue);
@@ -54,33 +57,38 @@ const ResultsPage = () => {
   const resultsTotalCount = repositoriesTotalCount + usersTotalCount;
 
   return (
-    <div>
-      {(usersLoading || repositoriesLoading) && <p className="loading-status">Trwa ładowanie danych...</p>}
-      {usersError || repositoriesError ? (
-        <p className="error-message">
-          Wystąpił błąd:{" "}
-          {usersError === repositoriesError
-            ? usersError
-            : Boolean(usersError)
-            ? usersError
-            : Boolean(repositoriesError) && repositoriesError}
-        </p>
-      ) : (
-        <div className="results-container">
-          <header>
-            <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
-          </header>
-          <section className="results">{componentsToDisplay}</section>
-          <div className="pagination">
-            <Link to="#">
-              <span>{arrowLeftIcon}</span> Previous
-            </Link>
-            <div className="page-number"></div>
-            <Link to="#">Next {arrowRightIcon}</Link>
+    <>
+      {/* {(usersLoading || repositoriesLoading) && <p className="loading-status">Trwa ładowanie danych...</p>} */}
+
+      {!usersLoading && !repositoriesLoading && users.length && repositories.length ? (
+        usersError || repositoriesError ? (
+          <p className="error-message">
+            Wystąpił błąd:{" "}
+            {usersError === repositoriesError
+              ? usersError
+              : Boolean(usersError)
+              ? usersError
+              : Boolean(repositoriesError) && repositoriesError}
+          </p>
+        ) : (
+          <div className="results-container">
+            <header>
+              <h1> {resultsTotalCount.toLocaleString("en-US")} results</h1>
+            </header>
+            <section className="results">{componentsToDisplay}</section>
+            <div className="pagination">
+              <Link to="#">
+                <span>{arrowLeftIcon}</span> Previous
+              </Link>
+              <div className="page-number"></div>
+              <Link to="#">Next {arrowRightIcon}</Link>
+            </div>
           </div>
-        </div>
+        )
+      ) : (
+        <p className="loading-status">Trwa ładowanie danych...</p>
       )}
-    </div>
+    </>
   );
 };
 

@@ -10,9 +10,9 @@ const User: React.FC<Props> = ({ user }) => {
   return (
     <>
       <div className="user-container">
-        <div className="separation">
+        {/* <div className="separation">
           <div className="separator"></div>
-        </div>
+        </div> */}
         <div className="user">
           <div className="user-titles">
             <div className="user-titles-name">

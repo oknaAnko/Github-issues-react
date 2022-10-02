@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { starIcon, usersIcon } from "../helpers/icons";
 import { useAppDispatch } from "../store/hooks";
-import { fetchUser, fetchUserRepos } from "../store/results/actions";
+import { fetchUser, fetchUserRepos, storeSearchValue } from "../store/results/actions";
 import {
   getAllUsers,
   getUsersError,
@@ -11,12 +11,14 @@ import {
   getAllRepositories,
   getRepositoriesError,
   getRepositoriesLoadingStatus,
+  getSearchValue,
 } from "../store/results/selectors";
 import { IUserDetailed } from "../helpers/interfaces";
 
 const UserPage = () => {
   const { login } = useParams();
   const dispatch = useAppDispatch();
+  let navigate = useNavigate();
 
   const user = useSelector(getAllUsers).find((user) => user.login === login) as IUserDetailed | undefined;
   const userError = useSelector(getUsersError);
@@ -27,6 +29,25 @@ const UserPage = () => {
     .reduce((a, b) => a + b, 0);
   const usersReposError = useSelector(getRepositoriesError);
   const usersReposLoading = useSelector(getRepositoriesLoadingStatus);
+
+  // const searchValue = useSelector(getSearchValue);
+  // console.log("searchValue", searchValue);
+
+  // const isInitialMount = useRef(true);
+
+  // useEffect(() => {
+  //   console.log("czyszczenie searcha");
+  //   dispatch(storeSearchValue(""));
+  // }, []);
+
+  // useEffect(() => {
+  //   if (isInitialMount.current) {
+  //     isInitialMount.current = false;
+  //   } else {
+  //     console.log("navigate");
+  //     if (searchValue) navigate("/");
+  //   }
+  // });
 
   useEffect(() => {
     if (!user) {

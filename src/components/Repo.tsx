@@ -19,9 +19,9 @@ const Repo: React.FC<Props> = ({ repo }) => {
   return (
     <>
       <div className="repo-container">
-        <div className="separation">
+        {/* <div className="separation">
           <div className="separator"></div>
-        </div>
+        </div> */}
         <div className="repo">
           <div className="repo-titles">
             <div className="repo-titles-name">

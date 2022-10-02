@@ -54,6 +54,7 @@
 .results {
   @include flex-parent(column, flex-start);
   padding: 0px;
+  width: 100%;
 }
 
 .pagination {
